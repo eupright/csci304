@@ -1,5 +1,22 @@
 #include <stdio.h>
 #include <string.h>
+#include "bin_str.h"
+
+unsigned short get_binary_op (char *bin){
+
+}
+
+void convert_to_binary (short acc, char *bin){
+
+}
+
+void add (short *acc, char mode){
+
+}
+
+void subtract (short *acc, char mode){
+
+}
 
 short get_operand(char mode){
     short acc;
@@ -36,6 +53,7 @@ void print_acc(short acc, char mode){
         default:
             printf("* Accumulator:         Input Mode: Dec *\n");
     }
+    printf("*   Binary  :  %016hx      *\n", acc);
     printf("*   Hex     :  %04hX                    *\n", acc);
     printf("*   Octal   :  %06ho                  *\n", acc);
     printf("*   Decimal :  %-10hd              *\n", acc);
@@ -45,14 +63,15 @@ void print_acc(short acc, char mode){
 char print_menu(void){
     char mode[10];
     int menu_error;
-    char valid_modes[] = "OoHhDdCcSsQq";
+    char valid_modes[] = "OoHhDdCcSsQq&|^~<>+-Nn";
     do {
         printf("Please select one of the following options: \n\n");
-        printf("O  Octal Mode\n");
-        printf("H  Hexadecimal Mode\n");
-        printf("D  Decimal Mode\n\n");
-        printf("C  Clear Accumulator\n");
-        printf("S  Set Accumulator\n\n");
+        printf("B  Binary Mode             & AND with Accumulator           + Add to Accumulator\n");
+        printf("O  Octal Mode              | OR  with Accumulator           - Subtract from Accumulator\n");
+        printf("H  Hexadecimal Mode        ^ XOR with Accumulator           N Negate Accumulator\n");
+        printf("D  Decimal Mode            ~ Complement Accumulator\n\n");
+        printf("C  Clear Accumulator       < Shift Accumulator Left\n");
+        printf("S  Set Accumulator         > Shift Accumulator Right\n\n");
         printf("Q  Quit\n\n");
 
         scanf("%s", mode);
