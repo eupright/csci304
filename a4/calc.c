@@ -7,7 +7,7 @@ unsigned short get_binary_op (char *bin){
     unsigned short acc = 0;
     int power = 0;
     //iterates over the string from right to left
-    for (int i = strlen(bin)-1; i <= 0; i--) {
+    for (int i = strlen(bin)-1; i >= 0; i--) {
         //adds to the acc value when there's a one
         if(bin[i] == '1'){
             acc += pow(2, power);
@@ -15,27 +15,28 @@ unsigned short get_binary_op (char *bin){
         //increments the power of 2 every time as the bits get more significant
         power++;
     }
+    return acc;
 }
 
 void convert_to_binary (short acc, char *bin){
     //cast acc to an unsigned short
     unsigned short u_acc = acc;
     int power = 15;
-    int position = 1; //keeps track of the position in the string to add spaces where needed
+    int position = 1; //keeps track of the position in the string to add 1s,0s,and spaces
     while(power >= 0){
         //adding spaces where necessary, doesn't decrement the power
         if(position % 5 == 0){
-            strcat(bin, ' ');
+            bin[position-1] = ' ';
         }
         //if you need a 2^x value, then append a 1 and subtract 2^x from u_acc
         else if(u_acc >= pow(2, power)){
-            strcat(bin, '1');
+            bin[position-1] = '1';
             u_acc = u_acc - pow(2, power);
             power--;
         }
         //otherwise, append a 0 and continue on
         else {
-            strcat(bin, '0');
+            bin[position-1] = '0';
             power--;
         }
         position++;
@@ -57,7 +58,7 @@ short get_operand(char mode){
     switch (mode) {
         case 'B': case 'b':
             printf("Enter binary value: ");
-            scanf("%s", &bin);
+            scanf("%s", bin);
             printf("%s", bin);
             acc = get_binary_op(bin);
             break;
@@ -100,7 +101,7 @@ void print_acc(short acc, char mode){
             printf("* Accumulator:         Input Mode: Dec *\n");
     }
     //prints out the current value of the accumulator in the different representations
-    printf("*   Binary  :  %16s      *\n", bin);
+    printf("*   Binary  :  %s   *\n", bin);
     printf("*   Hex     :  %04hX                    *\n", acc);
     printf("*   Octal   :  %06ho                  *\n", acc);
     printf("*   Decimal :  %-10hd              *\n", acc);
@@ -110,7 +111,7 @@ void print_acc(short acc, char mode){
 char print_menu(void){
     char mode[10];
     int menu_error;
-    char valid_modes[] = "OoHhDdCcSsQq&|^~<>+-Nn";
+    char valid_modes[] = "BbOoHhDdCcSsQq&|^~<>+-Nn";
     //prints out the menu until a valid menu option is selected
     do {
         printf("Please select one of the following options: \n\n");
@@ -218,6 +219,19 @@ int main() {
                 break;
         }
     }
+
+
+/*
+    bin_str bin;
+    short acc;
+    printf("Enter binary value: ");
+    scanf("%s", bin);
+    printf("%s", bin);
+    acc = get_binary_op(bin);
+    printf("\n %d \n", acc);
+    convert_to_binary(acc,bin);
+    printf("%s", bin);
+*/
 
     return 0;
 }

@@ -1,6 +1,6 @@
 cmake_minimum_required(VERSION 3.21)
-project(a4 C)
+project(calc C)
 
 set(CMAKE_C_STANDARD 99)
 
-add_executable(a4 calc.c bin_str.h)
+add_executable(calc calc.c bin_str.h)
