@@ -4,6 +4,7 @@
 #include "bin_str.h"
 
 unsigned short get_binary_op (char *bin){
+    //returns the number represented by the binary string
     unsigned short acc = 0;
     int power = 0;
     //iterates over the string from right to left
@@ -19,6 +20,7 @@ unsigned short get_binary_op (char *bin){
 }
 
 void convert_to_binary (short acc, char *bin){
+    //converts the value into a binary string
     //cast acc to an unsigned short
     unsigned short u_acc = acc;
     int power = 15;
@@ -41,15 +43,9 @@ void convert_to_binary (short acc, char *bin){
         }
         position++;
     }
+    bin[19] = '\0';
 }
 
-void add (short *acc, char mode){
-
-}
-
-void subtract (short *acc, char mode){
-
-}
 
 short get_operand(char mode){
     //asks the user for the value in the specified mode
@@ -82,6 +78,40 @@ short get_operand(char mode){
     return acc;
 }
 
+void add (short *acc, char mode){
+    //get an operand in the specified mode to add to acc
+    short operand;
+    operand = get_operand(mode);
+    //add acc and operand
+    short result = (*acc + operand);
+    //detect positive or negative overflow
+    if(*acc > 0 && operand > 0 && result < 0){
+        printf("Positive Overflow\n");
+    }
+    else if (*acc < 0 && operand < 0 && result > 0){
+        printf("Negative Overflow\n");
+    }
+    //set acc to the new value
+    *acc = result;
+}
+
+void subtract (short *acc, char mode){
+    //get an operand in the specified mode to subtract from acc
+    short operand;
+    operand = get_operand(mode);
+    //subtract the operand from acc
+    short result = (*acc - operand);
+    //detect positive or negative overflow
+    if(*acc > 0 && (-1)*operand > 0 && result < 0){
+        printf("Positive Overflow\n");
+    }
+    else if (*acc < 0 && (-1)*operand < 0 && result > 0){
+        printf("Negative Overflow\n");
+    }
+    //set acc to the new value
+    *acc = result;
+}
+
 void print_acc(short acc, char mode){
     bin_str bin;
     convert_to_binary(acc, bin);
@@ -101,7 +131,7 @@ void print_acc(short acc, char mode){
             printf("* Accumulator:         Input Mode: Dec *\n");
     }
     //prints out the current value of the accumulator in the different representations
-    printf("*   Binary  :  %s   *\n", bin);
+    printf("*   Binary  :  %s     *\n", bin);
     printf("*   Hex     :  %04hX                    *\n", acc);
     printf("*   Octal   :  %06ho                  *\n", acc);
     printf("*   Decimal :  %-10hd              *\n", acc);
@@ -115,13 +145,13 @@ char print_menu(void){
     //prints out the menu until a valid menu option is selected
     do {
         printf("Please select one of the following options: \n\n");
-        printf("B  Binary Mode             & AND with Accumulator           + Add to Accumulator\n");
-        printf("O  Octal Mode              | OR  with Accumulator           - Subtract from Accumulator\n");
-        printf("H  Hexadecimal Mode        ^ XOR with Accumulator           N Negate Accumulator\n");
-        printf("D  Decimal Mode            ~ Complement Accumulator\n\n");
-        printf("C  Clear Accumulator       < Shift Accumulator Left\n");
-        printf("S  Set Accumulator         > Shift Accumulator Right\n\n");
-        printf("Q  Quit\n\n");
+        printf("B  Binary Mode             &  AND with Accumulator           +  Add to Accumulator\n");
+        printf("O  Octal Mode              |  OR  with Accumulator           -  Subtract from Accumulator\n");
+        printf("H  Hexadecimal Mode        ^  XOR with Accumulator           N  Negate Accumulator\n");
+        printf("D  Decimal Mode            ~  Complement Accumulator\n\n");
+        printf("C  Clear Accumulator       <  Shift Accumulator Left\n");
+        printf("S  Set Accumulator         >  Shift Accumulator Right\n\n");
+        printf("Q  Quit \n\n");
 
         scanf("%s", mode);
         printf("Option: %s\n", mode);
@@ -146,9 +176,11 @@ char print_menu(void){
 
 int main() {
 
+    //accumulator default settings for the start
     char mode = 'D';
     char menu_selection;
     short acc = 0;
+    short operand = 0;
     // print accumulator
     print_acc(acc, mode);
     // print menu - return menu option - may not be the new mode!
@@ -195,33 +227,90 @@ int main() {
                 print_acc(acc, mode);
                 menu_selection = print_menu();
                 break;
-            //&,|,^,-,+ - asks for an operand in the current mode and then performs the operation
+            //&,|,^, - asks for an operand in the current mode and then performs the operation
             case '&':
+                operand = get_operand(mode);
+                acc = acc & operand;
+                print_acc(acc, mode);
+                menu_selection = print_menu();
                 break;
             case '|':
+                operand = get_operand(mode);
+                acc = acc | operand;
+                print_acc(acc, mode);
+                menu_selection = print_menu();
                 break;
             case '^':
+                operand = get_operand(mode);
+                acc = acc ^ operand;
+                print_acc(acc, mode);
+                menu_selection = print_menu();
                 break;
-            //-,+ - prints whether positive or negative overflow occurred
+            //-,+ - use the add and subtract functions to get the operand, overflow, and perform the operation
             case '+':
+                add(&acc, mode);
+                print_acc(acc, mode);
+                menu_selection = print_menu();
                 break;
             case '-':
+                subtract(&acc, mode);
+                print_acc(acc, mode);
+                menu_selection = print_menu();
                 break;
             //<,> - asks for a decimal value for the number of bits to shift
             case '<':
+                printf("Enter number of positions to left shift accumulator: ");
+                scanf("%hd", &operand);
+                printf("%hd\n", operand);
+                acc = acc << operand;
+                print_acc(acc, mode);
+                menu_selection = print_menu();
                 break;
             case '>':
+                printf("Enter number of positions to right shift accumulator: ");
+                scanf("%hd", &operand);
+                printf("%hd\n", operand);
+                acc = acc >> operand;
+                print_acc(acc, mode);
+                menu_selection = print_menu();
                 break;
             //~,n - just completes the operation
             case '~':
+                acc = ~acc;
+                print_acc(acc, mode);
+                menu_selection = print_menu();
                 break;
             case 'n': case 'N':
+                acc = (-1)*acc;
+                print_acc(acc, mode);
+                menu_selection = print_menu();
                 break;
         }
     }
 
-
 /*
+    short acc = -320;
+    short operand = -25;
+    short result = acc + operand;
+    //detect positive or negative overflow
+    if(acc > 0 && operand > 0 && result < 0){
+        printf("Positive Overflow\n");
+    }
+    else if (acc < 0 && operand < 0 && result > 0){
+        printf("Negative Overflow\n");
+    }
+    //add acc and operand
+    acc = result;
+    printf("%hd", acc);
+
+    short acc = 31;
+    short operand;
+    printf("Enter number of positions to left shift accumulator: ");
+    scanf("%hd", &operand);
+    printf("%hd \n", operand);
+    acc = acc << operand;
+    printf("%hd", acc);
+
     bin_str bin;
     short acc;
     printf("Enter binary value: ");
