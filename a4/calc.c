@@ -1,20 +1,19 @@
 #include <stdio.h>
 #include <string.h>
-#include <math.h>
-#include "bin_str.h"
+#include "calc.h"
 
 unsigned short get_binary_op (char *bin){
     //returns the number represented by the binary string
     unsigned short acc = 0;
-    int power = 0;
+    int power = 1;
     //iterates over the string from right to left
     for (int i = strlen(bin)-1; i >= 0; i--) {
         //adds to the acc value when there's a one
         if(bin[i] == '1'){
-            acc += pow(2, power);
+            acc += power;
         }
         //increments the power of 2 every time as the bits get more significant
-        power++;
+        power *= 2;
     }
     return acc;
 }
@@ -23,23 +22,23 @@ void convert_to_binary (short acc, char *bin){
     //converts the value into a binary string
     //cast acc to an unsigned short
     unsigned short u_acc = acc;
-    int power = 15;
+    int power = 32768;
     int position = 1; //keeps track of the position in the string to add 1s,0s,and spaces
-    while(power >= 0){
+    while(power >= 1){
         //adding spaces where necessary, doesn't decrement the power
         if(position % 5 == 0){
             bin[position-1] = ' ';
         }
         //if you need a 2^x value, then append a 1 and subtract 2^x from u_acc
-        else if(u_acc >= pow(2, power)){
+        else if(u_acc >= power){
             bin[position-1] = '1';
-            u_acc = u_acc - pow(2, power);
-            power--;
+            u_acc -= power;
+            power /= 2;
         }
         //otherwise, append a 0 and continue on
         else {
             bin[position-1] = '0';
-            power--;
+            power /= 2;
         }
         position++;
     }
