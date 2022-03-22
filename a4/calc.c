@@ -12,7 +12,7 @@ unsigned short get_binary_op (char *bin){
         if(bin[i] == '1'){
             acc += power;
         }
-        //increments the power of 2 every time as the bits get more significant
+        //increments the power of 2 as the bits get more significant
         power *= 2;
     }
     return acc;
@@ -55,6 +55,7 @@ short get_operand(char mode){
             printf("Enter binary value: ");
             scanf("%s", bin);
             printf("%s", bin);
+            //converting the user's binary string into the short acc value
             acc = get_binary_op(bin);
             break;
         case 'O': case 'o':
@@ -166,7 +167,8 @@ char print_menu(void){
         else {
             menu_error = 0;
         }
-
+    //menu_error is true when the user inputs an invalid menu option
+    //menu_error is false when the user inputs a valid option which stops the loop
     } while (menu_error);
     //the valid menu option will be the first character in the string
     return mode[0];
@@ -180,12 +182,12 @@ int main() {
     char menu_selection;
     short acc = 0;
     short operand = 0;
-    // print accumulator
+    //print accumulator
     print_acc(acc, mode);
-    // print menu - return menu option - may not be the new mode!
+    //print menu - return menu option - may not be the new mode!
     menu_selection = print_menu();
-    // decide what to do with the menu option
-    // q - quit out of the accumulator - stop the program
+    //decide what to do with the menu option
+    //q - quit out of the accumulator - stop the program
     while (menu_selection != 'Q' && menu_selection != 'q') {
         //menu_selection = print_menu();
         switch (menu_selection) {
@@ -286,40 +288,6 @@ int main() {
                 break;
         }
     }
-
-/*
-    short acc = -320;
-    short operand = -25;
-    short result = acc + operand;
-    //detect positive or negative overflow
-    if(acc > 0 && operand > 0 && result < 0){
-        printf("Positive Overflow\n");
-    }
-    else if (acc < 0 && operand < 0 && result > 0){
-        printf("Negative Overflow\n");
-    }
-    //add acc and operand
-    acc = result;
-    printf("%hd", acc);
-
-    short acc = 31;
-    short operand;
-    printf("Enter number of positions to left shift accumulator: ");
-    scanf("%hd", &operand);
-    printf("%hd \n", operand);
-    acc = acc << operand;
-    printf("%hd", acc);
-
-    bin_str bin;
-    short acc;
-    printf("Enter binary value: ");
-    scanf("%s", bin);
-    printf("%s", bin);
-    acc = get_binary_op(bin);
-    printf("\n %d \n", acc);
-    convert_to_binary(acc,bin);
-    printf("%s", bin);
-*/
 
     return 0;
 }
