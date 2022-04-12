@@ -5,22 +5,21 @@ int a = 8;
 int b = -3;
 int m = 10;
 
-//computes the summation of ai+b using repeated adds
+//computes the summation of ai+b, from 0 to n, using repeated adds
 int summation(int n) {
     int sum = 0;
-    int i = n;
+    int a_count = a; //holds the value of a so the nested do-while loop can run a times
     //loops from n to 0 in order to compute the sum
     do {
         sum += b;
-        if (i > 0){
-            //computes a*i with addition instead of multiplication
-            do {
-                sum += a;
-                i--;
-            } while (i > 0);
-        }
+        //computes a*i (which is the same as a*n) with addition instead of multiplication
+        //adds i (or n) to the sum a times
+        do {
+            sum += n;
+            a_count--;
+        } while (a_count > 0);
+        a_count = a;
         n--;
-        i = n;
     } while (n >= 0);
     return sum;
 }
@@ -36,7 +35,7 @@ int main() {
         //call summation on j
         sum = summation(j);
         //prints out j and its summation in both decimal and hex
-        printf("%2d  %x : %5d   %08x\n", j, j, sum, sum);
+        printf("%2d  %x : %5d   0x%08x\n", j, j, sum, sum);
         //increment j
         j++;
     } while(j <= m);

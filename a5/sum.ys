@@ -1,0 +1,64 @@
+.pos 0x0
+
+irmovl $0, %ecx      # n = 0
+irmovl $0, %ebp      # j = 0
+irmovl output, %edx  # %edx holds the address for the output array
+
+main:                # label for the main function loop
+
+irmovl data, %eax    # getting the base address of data
+mrmovl (%eax), %ebx  # %ebx = a
+mrmovl 4(%eax), %edi # %edi = b
+irmovl $0, %esi      # sum = 0
+
+
+summation:           # label for the outer summation loop
+
+addl %edi, %esi      # sum += b
+
+multiplication:      # label for the inner loop for a*i
+
+addl %ecx, %esi      # sum += n
+
+irmovl $1, %eax      # temp = 1
+subl %eax, %ebx      # a--
+jg multiplication    # while(a > 0) 
+#end of multiplication loop
+
+
+irmovl data, %eax    # getting the base address of data to reset a
+mrmovl (%eax), %ebx  # %ebx = a
+
+irmovl $1, %eax      # temp = 1
+subl %eax, %ecx      # n--
+jge summation        # while (n >= 0)
+#end of summation loop
+
+
+rmmovl %esi, (%edx)  # output[j] = sum
+
+irmovl $1, %eax      # temp = 1
+addl %eax, %ebp      # j++
+
+rrmovl %ebp, %ecx    # n = j
+
+irmovl $4, %eax      # temp = 4
+addl %eax, %edx      # incrementing the address for the array
+
+irmovl data, %eax    # getting the base address of data
+mrmovl 8(%eax), %ebx # %ebx = m
+
+subl %ebp, %ebx      # m = m - j
+jge main             # while(j <= m) while (m-n >= 0)
+
+halt
+
+
+.align 4             # aligning memory for the variables and output array
+data:
+.long 8              # a
+.long -3             # b
+.long 10             # m
+
+output:              # the start of the output array
+
