@@ -2,13 +2,13 @@
 
 irmovl $0, %ecx      # n = 0
 irmovl $0, %ebp      # j = 0
-irmovl output, %edx  # %edx holds the address for the output array
+irmovl output, %edx  # edx holds the address for the output array
 
 main:                # label for the main function loop
 
 irmovl data, %eax    # getting the base address of data
-mrmovl (%eax), %ebx  # %ebx = a
-mrmovl 4(%eax), %edi # %edi = b
+mrmovl (%eax), %ebx  # ebx = a
+mrmovl 4(%eax), %edi # edi = b
 irmovl $0, %esi      # sum = 0
 
 
@@ -22,15 +22,17 @@ addl %ecx, %esi      # sum += n
 
 irmovl $1, %eax      # temp = 1
 subl %eax, %ebx      # a--
+
 jg multiplication    # while(a > 0) 
 #end of multiplication loop
 
 
 irmovl data, %eax    # getting the base address of data to reset a
-mrmovl (%eax), %ebx  # %ebx = a
+mrmovl (%eax), %ebx  # ebx = a
 
 irmovl $1, %eax      # temp = 1
 subl %eax, %ecx      # n--
+
 jge summation        # while (n >= 0)
 #end of summation loop
 
@@ -46,10 +48,10 @@ irmovl $4, %eax      # temp = 4
 addl %eax, %edx      # incrementing the address for the array
 
 irmovl data, %eax    # getting the base address of data
-mrmovl 8(%eax), %ebx # %ebx = m
+mrmovl 8(%eax), %ebx # ebx = m
 
 subl %ebp, %ebx      # m = m - j
-jge main             # while(j <= m) while (m-n >= 0)
+jge main             # while(j <= m)
 
 halt
 
