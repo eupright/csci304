@@ -1,6 +1,9 @@
 #ifndef A6_CONTACT_H
 #define A6_CONTACT_H
 
+#include <stdio.h>
+#include <stdlib.h>
+#include <string.h>
 #include "utils.h"
 
 typedef char NAME_T[15];

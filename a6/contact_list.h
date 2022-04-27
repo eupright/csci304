@@ -1,6 +1,8 @@
 #ifndef A6_CONTACT_LIST_H
 #define A6_CONTACT_LIST_H
 
+#include <stdio.h>
+#include <stdlib.h>
 #include "contact.h"
 #include "utils.h"
 
