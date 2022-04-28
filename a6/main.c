@@ -29,7 +29,8 @@ int main() {
 
     init_contact_list();
     process_file(filename);
-    //print_contact_list(mode);
+    printf("file processed and contacts inserted\n");
+    print_contact_list(mode);
 
     do {
         menu_option = print_menu();

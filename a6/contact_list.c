@@ -14,17 +14,18 @@ void insert_contact(CONTACT_T *contact) {
     char letter = contact->last_name[0];
     upper(&letter);
     int index = letter - 'A';
+    //printf("index is: %d\n", index);
+
+    //case for an empty bucket
+    if (bucket_list[index] == NULL){
+        bucket_list[index] = contact;
+        //printf("in an empty bucket\n");
+        return;
+    }
 
     //initializing current to the first element in the bucket
     CONTACT_T *current = bucket_list[index];
     CONTACT_T *prev;
-
-    //case for an empty bucket
-    if (current == NULL){
-        bucket_list[index] = contact;
-        printf("in an empty bucket");
-        return;
-    }
 
     //setting up the temporary uppercase last names for comparison
     NAME_T cont_temp;
@@ -38,18 +39,32 @@ void insert_contact(CONTACT_T *contact) {
     //if current > contact
     if (strcmp(curr_temp, cont_temp) > 0){
         //insert contact at the head of the bucket
+        //printf("inserting at head of bucket\n");
         contact->next = current;
         bucket_list[index] = contact;
         return;
     }
     else {
         //advance current and previous while current < contact
-        while (strcmp(curr_temp, cont_temp) < 0) {
+        //printf("in the else\n");
+        while (current != NULL && (strcmp(curr_temp, cont_temp) < 0)) {
+            //printf("in the while loop\n");
             prev = current;
+            //printf("assigned prev\n");
             current = current->next;
-            strcpy(cont_temp, current->last_name);
-            upper(cont_temp);
+            //printf("moved current\n");
+            if (current != NULL){
+                strcpy(curr_temp, current->last_name);
+                upper(curr_temp);
+            }
         }
+
+        //insert the contact in between prev and current
+        //printf("inserting in the list\n");
+        contact->next = current;
+        prev->next = contact;
+
+        /*
         if (strcmp(curr_temp, cont_temp) == 0){
             //if the contacts have the same last name
             //check the first names
@@ -74,7 +89,7 @@ void insert_contact(CONTACT_T *contact) {
             contact->next = current;
             prev->next = contact;
         }
-        return;
+        return; */
     }
 }
 
