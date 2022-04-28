@@ -38,6 +38,7 @@ int main(int argc, char *argv[]) {
     init_contact_list();
     process_file(filename);
     print_contact_list(mode);
+    printf("\n");
 
     do {
         menu_option = print_menu();
@@ -129,7 +130,7 @@ char print_format_menu() {
 
     printf("\nPlease select one of the following:\n\n");
     printf(" c  Condensed output information\n");
-    printf(" f  Full output information\n");
+    printf(" f  Full output information\n\n");
 
     //prompting for and uppercasing the format mode
     scanf("%2s", mode);
@@ -153,7 +154,7 @@ void find_individual(char mode) {
 
     printf("\nPlease enter first name:");
     scanf("%15s", first_name);
-    printf("%s\n", first_name);
+    printf("%s\n\n", first_name);
     upper(first_name);
 
     //calling find_contact
@@ -174,7 +175,7 @@ void print_tab(char mode) {
     //prompt for tab letter and uppercasing it
     printf("\nPlease enter last name tab letter:");
     scanf(" %c", &tab);
-    printf("%c\n", tab);
+    printf("%c\n\n", tab);
     upper(&tab);
 
     //calls get_next_contact using tab letter
