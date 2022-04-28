@@ -103,16 +103,16 @@ char print_menu() {
 
         //prompting for a menu option and uppercasing it
         scanf("%10s", menu_option);
-        printf("Option: %s\n\n", menu_option);
+        printf("Option: %s\n", menu_option);
         upper(menu_option);
 
         //checking for a valid option
         if(strlen(menu_option) > 1) {
-            printf("Invalid option entered\n");
+            printf("\nInvalid option entered\n");
             menu_error = 1;
         }
         else if(!strchr(valid_modes, menu_option[0])){
-            printf("Invalid option entered\n");
+            printf("\nInvalid option entered\n");
             menu_error = 1;
         }
         else {
