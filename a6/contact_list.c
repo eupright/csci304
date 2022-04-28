@@ -125,6 +125,11 @@ CONTACT_T *find_contact(NAME_T last_name, NAME_T first_name) {
         }
     }
 
+    if (current == NULL){
+        //reached the end of the bucket and the contact doesn't exist
+        return NULL;
+    }
+
     //setting up the uppercase first name for comparison
     NAME_T first_temp;
     strcpy(first_temp, current->first_name);
