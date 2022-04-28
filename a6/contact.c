@@ -33,7 +33,7 @@ void print_contact(CONTACT_T *contact, char mode) {
         printf("Address: %s, %s, %s %s  (%s County)\n", contact->addr, contact->city, contact->state, contact->zip, contact->county);
         printf("Phone:   %s (primary)  %s\n", contact->phone1, contact->phone2);
         printf("Email:   %s\n", contact->email);
-        printf("Web:     %s\n", contact->web);
+        printf("Web:     %s\n\n", contact->web);
     } else if (mode == 'C') {
         //printing in condensed mode
         printf("%-15s   %-15s   %-12s   %-35s\n", contact->last_name, contact->first_name, contact->phone1, contact->email);

@@ -1,4 +1,5 @@
 #include <stdio.h>
+#include <stdlib.h>
 #include <string.h>
 #include "contact.h"
 #include "contact_list.h"
@@ -18,18 +19,26 @@ void print_tab(char mode);
 void process_state_contacts(char mode);
 
 
-int main() {
+int main(int argc, char *argv[]) {
     //initializing the mode to condensed
     char mode = 'C';
     char menu_option;
-    char filename[20] = "addrcsv_short.txt";
+    char filename[20] = "addrcsv.txt";
 
     //check command line argument info to ensure a file is specified
-    //if not a message is printed and exit is called with a EXIT_FAILURE status
+    if (argc == 2){
+        //if yes, get the filename
+        strcpy(filename, argv[1]);
+        //printf("filename: %s", filename);
+    } else {
+        //if not a message is printed and exit is called with a EXIT_FAILURE status
+        printf("No file provided\n");
+        exit(0);
+    }
 
     init_contact_list();
     process_file(filename);
-    printf("file processed and contacts inserted\n");
+    //printf("\n");
     print_contact_list(mode);
 
     do {
