@@ -94,7 +94,7 @@ char print_menu() {
     char valid_modes[] = "CITSQ";
     do {
         //printing the menu
-        printf("\nPlease select one of the following:\n\n");
+        printf("\nPlease select one of the following: \n\n");
         printf(" c  Change output format\n");
         printf(" i  Search for individual\n");
         printf(" t  Print tab\n");
@@ -103,16 +103,16 @@ char print_menu() {
 
         //prompting for a menu option and uppercasing it
         scanf("%10s", menu_option);
-        printf("Option: %s\n", menu_option);
+        printf("Option: %s\n\n", menu_option);
         upper(menu_option);
 
         //checking for a valid option
         if(strlen(menu_option) > 1) {
-            printf("\nInvalid option entered\n\n");
+            printf("Invalid option entered\n");
             menu_error = 1;
         }
         else if(!strchr(valid_modes, menu_option[0])){
-            printf("\nInvalid option entered\n\n");
+            printf("Invalid option entered\n");
             menu_error = 1;
         }
         else {
@@ -128,7 +128,7 @@ char print_menu() {
 char print_format_menu() {
     char mode[2];
 
-    printf("\nPlease select one of the following:\n\n");
+    printf("\nPlease select one of the following: \n\n");
     printf(" c  Condensed output information\n");
     printf(" f  Full output information\n\n");
 
@@ -147,12 +147,12 @@ void find_individual(char mode) {
     CONTACT_T *contact;
 
     //prompting for last and first names, and uppercasing them
-    printf("\nPlease enter last name:");
+    printf("\nPlease enter last name: ");
     scanf("%15s", last_name);
     printf("%s\n", last_name);
     upper(last_name);
 
-    printf("\nPlease enter first name:");
+    printf("Please enter first name: ");
     scanf("%15s", first_name);
     printf("%s\n\n", first_name);
     upper(first_name);
@@ -173,7 +173,7 @@ void print_tab(char mode) {
     CONTACT_T *contact;
 
     //prompt for tab letter and uppercasing it
-    printf("\nPlease enter last name tab letter:");
+    printf("\nPlease enter last name tab letter: ");
     scanf(" %c", &tab);
     printf("%c\n\n", tab);
     upper(&tab);
@@ -196,9 +196,9 @@ void process_state_contacts(char mode) {
     char state[3];
 
     //prompts for state and uppercases it
-    printf("\nPlease enter two-letter state abbreviation:");
+    printf("\nPlease enter two-letter state abbreviation: ");
     scanf("%2s", state);
-    printf("%s\n", state);
+    printf("%s\n\n", state);
     upper(state);
 
     //calls print_state_contacts
