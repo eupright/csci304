@@ -22,12 +22,12 @@ int main() {
     //initializing the mode to condensed
     char mode = 'C';
     char menu_option;
-    char filename[] = "addrcsv_short.txt";
+    //char filename[20] = "/addrcsv_short.txt";
 
     //check command line argument info to ensure a file is specified
     //if not a message is printed and exit is called with a EXIT_FAILURE status
 
-    //init_contact_list();
+    init_contact_list();
     //process_file(filename);
     //print_contact_list(mode);
 
@@ -48,6 +48,10 @@ int main() {
     contact = create_contact(&temp_cont);
     print_contact(contact, 'F');
     print_contact(contact, 'C');
+
+    insert_contact(contact);
+    printf("inserted contact\n");
+    print_contact_list(mode);
 
     do {
         menu_option = print_menu();
@@ -79,9 +83,11 @@ void process_file(char *filename) {
     FILE *fp;
     CONTACT_T temp_cont;
     CONTACT_T *contact;
+    printf("in process_file");
 
     //opening the contact file
     fp = fopen(filename, 'r');
+    printf("file is open");
     //discarding the first line
     fscanf(fp, "%*s\n");
     //reading each line and assigning the fields of the temporary contact
