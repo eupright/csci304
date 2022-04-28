@@ -23,13 +23,12 @@ int main(int argc, char *argv[]) {
     //initializing the mode to condensed
     char mode = 'C';
     char menu_option;
-    char filename[20] = "addrcsv.txt";
+    char filename[20];
 
     //check command line argument info to ensure a file is specified
     if (argc == 2){
         //if yes, get the filename
         strcpy(filename, argv[1]);
-        //printf("filename: %s", filename);
     } else {
         //if not a message is printed and exit is called with a EXIT_FAILURE status
         printf("No file provided\n");
@@ -38,7 +37,6 @@ int main(int argc, char *argv[]) {
 
     init_contact_list();
     process_file(filename);
-    //printf("\n");
     print_contact_list(mode);
 
     do {
