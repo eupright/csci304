@@ -80,7 +80,7 @@ void insert_contact(CONTACT_T *contact) {
 
 void print_contact_list(char mode) {
     //flag to check if the list is empty
-    int print_flag = 0;
+    int print_flag = FALSE;
     CONTACT_T *contact;
     //loop through each bucket in the list
     for (int i = 0; i < 26; ++i) {
@@ -89,12 +89,12 @@ void print_contact_list(char mode) {
         while (contact != NULL) {
             //printing each node and setting the print flag to true
             print_contact(contact, mode);
-            print_flag = 1;
+            print_flag = TRUE;
             contact = contact->next;
         }
     }
     //if no contacts were printed
-    if (print_flag == 0){
+    if (print_flag == FALSE){
         printf("Contact list is empty\n");
     }
 }
@@ -173,7 +173,7 @@ CONTACT_T *get_next_contact(char letter) {
 
 void print_state_contacts(char state[], char mode) {
     //flag to check if no people are from that state
-    int print_flag = 0;
+    int print_flag = FALSE;
     CONTACT_T *contact;
     //loop through each bucket in the list
     for (int i = 0; i < 26; ++i) {
@@ -184,13 +184,13 @@ void print_state_contacts(char state[], char mode) {
             if (strcmp(contact->state, state) == 0){
                 print_contact(contact, mode);
                 //setting the print flag to true
-                print_flag = 1;
+                print_flag = TRUE;
             }
             contact = contact->next;
         }
     }
     //if no contacts were printed
-    if (print_flag == 0){
+    if (print_flag == FALSE){
         printf("No contacts found\n");
     }
 }
