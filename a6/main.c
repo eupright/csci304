@@ -22,36 +22,14 @@ int main() {
     //initializing the mode to condensed
     char mode = 'C';
     char menu_option;
-    //char filename[20] = "/addrcsv_short.txt";
+    char filename[20] = "addrcsv_short.txt";
 
     //check command line argument info to ensure a file is specified
     //if not a message is printed and exit is called with a EXIT_FAILURE status
 
     init_contact_list();
-    //process_file(filename);
+    process_file(filename);
     //print_contact_list(mode);
-
-    CONTACT_T temp_cont;
-    strcpy(temp_cont.first_name, "Elizabeth");
-    strcpy(temp_cont.last_name, "Upright");
-    strcpy(temp_cont.co_name, "Fannie Mae");
-    strcpy(temp_cont.addr, "12007 Wandabury Road");
-    strcpy(temp_cont.city, "Oakton");
-    strcpy(temp_cont.county, "Fairfax");
-    strcpy(temp_cont.state, "VA");
-    strcpy(temp_cont.zip, "22124");
-    strcpy(temp_cont.phone1, "703-508-4084");
-    strcpy(temp_cont.phone2, "703-620-3556");
-    strcpy(temp_cont.email, "upright02@gmail.com");
-    strcpy(temp_cont.web, "eaupright.com");
-    CONTACT_T *contact;
-    contact = create_contact(&temp_cont);
-    print_contact(contact, 'F');
-    print_contact(contact, 'C');
-
-    insert_contact(contact);
-    printf("inserted contact\n");
-    print_contact_list(mode);
 
     do {
         menu_option = print_menu();
@@ -83,11 +61,10 @@ void process_file(char *filename) {
     FILE *fp;
     CONTACT_T temp_cont;
     CONTACT_T *contact;
-    printf("in process_file");
 
     //opening the contact file
-    fp = fopen(filename, 'r');
-    printf("file is open");
+    fp = fopen(filename, "r");
+
     //discarding the first line
     fscanf(fp, "%*s\n");
     //reading each line and assigning the fields of the temporary contact

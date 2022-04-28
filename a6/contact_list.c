@@ -22,6 +22,7 @@ void insert_contact(CONTACT_T *contact) {
     //case for an empty bucket
     if (current == NULL){
         bucket_list[index] = contact;
+        printf("in an empty bucket");
         return;
     }
 
@@ -77,7 +78,6 @@ void insert_contact(CONTACT_T *contact) {
     }
 }
 
-// SOMETHING WRONG HERE
 void print_contact_list(char mode) {
     //flag to check if the list is empty
     int print_flag = 0;
