@@ -1,0 +1,185 @@
+
+.pos 0x0
+
+main:
+irmovl stack, %esp       # setting the stack pointer
+irmovl input, %esi       # getting the start of the input array
+irmovl output, %edi      # getting the start of the output array
+
+mainloop:
+mrmovl (%esi), %ecx      # putting values from input into %ecx
+
+irmovl $0, %edx          # temp = 0 for testing
+addl   %ecx, %edx        # adding temp + input to set condition codes
+je     end               # if input == 0, jump to the end
+
+rmmovl %ecx, (%edi)      # move the input value into the output array
+irmovl $4, %edx          # temp = 4
+addl   %edx, %edi        # incrementing the output address
+
+pushl %ecx               # push argument for abs(n)
+call abs                 # call abs(n)
+
+popl %ecx                # pop argument
+rrmovl %eax, %ecx        # move the output from abs(n) into %ecx
+
+rmmovl %ecx, (%edi)      # move the updated %ecx value into the output array
+irmovl $4, %edx          # temp = 4
+addl   %edx, %edi        # incrementing the output address
+
+irmovl $1, %edx          # temp = 1 for testing
+andl   %ecx, %edx        # if input is odd, 1 & 1 = 1
+jne    odd               # otherwise, fall to the even case
+
+
+even:
+rrmovl %ecx, %edx        # temp = n for the call to mult()
+
+pushl %ecx               # push the x argument for mult(x, y)
+pushl %edx               # push the y argument for mult(x, y)
+
+call mult                # call mult()
+
+popl %edx                # pop argument
+popl %ecx                # pop argument
+
+jmp endloop
+
+
+odd:
+pushl %ecx               # push argument for rfact(n)
+
+call rfact               # call rfact()
+
+popl %ecx                # pop argument
+
+
+endloop:
+rmmovl %eax, (%edi)      # store return value from mult/rfact in output
+
+irmovl $4, %edx          # temp = 4
+addl   %edx, %edi        # increment the output address
+addl   %edx, %esi        # increment the input address
+
+jmp    mainloop
+
+
+
+end:
+halt                     # end of the program, when input == 0
+
+
+abs:
+pushl  %ebp              # prologue
+rrmovl %esp, %ebp
+
+pushl  %edi              # save the value in %edi
+
+mrmovl 8(%ebp), %edi     # getting the argument n
+irmovl $0, %eax          # abs = 0
+
+addl %edi, %eax          # if n is already positive
+jg   absreturn           # jump to the return
+
+irmovl $0, %eax          # abs = 0
+subl %edi, %eax          # abs = abs - (-n)
+
+absreturn:
+popl   %edi              # restore value of %edi
+
+popl   %ebp              # epilogue
+ret
+
+
+mult:
+pushl  %ebp              # prologue
+rrmovl %esp, %ebp
+
+pushl  %edi              # save the value in %edi
+pushl  %esi              # save the value in %esi
+
+mrmovl 12(%ebp), %esi    # getting the argument x
+mrmovl 8(%ebp), %edi     # getting the argument y
+
+irmovl $0, %eax          # product = 0
+
+multloop:
+addl %edi, %eax          # product = product + y
+
+irmovl $1, %edx          # temp = 1 for decrementing
+subl %edx, %esi          # x = x - 1
+jg multloop              # while x > 0, continue multiplying
+
+
+popl   %esi              # restore value of %esi
+popl   %edi              # restore value of %edi
+
+popl   %ebp              # epilogue
+ret
+
+
+
+rfact:
+pushl  %ebp              # prologue
+rrmovl %esp, %ebp
+
+pushl  %edi              # save the value in %edi
+pushl  %esi              # save the value in %esi
+
+mrmovl 8(%ebp), %edi     # getting the argument n
+
+irmovl $1, %eax          # fact = 1 in case the base case is true
+
+irmovl $1, %edx          # temp = 1 to check the base case
+subl %edi, %edx          # if n == 1, then temp - n = 0
+je basereturn            # and jump to the base case return
+
+rrmovl %edi, %esi        # x = n = y for the call to mult()
+irmovl $1, %edx          # temp = 1 for the call to mult()
+subl %edx, %esi          # x = n - 1
+
+pushl %esi               # push the argument for rfact(n-1)
+call rfact               # call rfact()
+popl %esi                # pop argument
+
+rrmovl %eax, %esi        # move the return value from rfact() into %esi
+
+
+pushl %esi               # push the x argument for mult(x, y)
+pushl %edi               # push the y argument for mult(x, y)
+
+call mult                # call mult()
+
+popl %edi                # pop argument
+popl %esi                # pop argument
+
+#recursive return
+popl   %esi              # restore value of %esi
+popl   %edi              # restore value of %edi
+
+popl   %ebp              # epilogue
+ret
+
+basereturn:
+popl   %esi              # restore value of %esi
+popl   %edi              # restore value of %edi
+
+popl   %ebp              # epilogue
+ret
+
+
+
+.align 4
+
+input:                   # the input array
+.long 3
+.long -5
+.long -4
+.long 7
+.long 0
+
+output:                  # start of the output array
+
+.pos 0x400
+stack:                   # start of the stack, away from the rest of the code
+
