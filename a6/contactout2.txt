@@ -508,58 +508,7 @@ Please select one of the following:
  s  Look up by state
  q  Quit
 
-Option: T
-
-
-Please enter last name tab letter: w
-
-Walthall          Hubert            330-903-1345   hubert@walthall.org
-Wardrip           Tammara           650-803-1936   twardrip@cox.net
-Waycott           Kanisha           323-453-2780   kanisha_waycott@yahoo.com
-Waymire           Norah             415-306-7897   norah.waymire@gmail.com
-Weglarz           Lonny             801-293-9853   lonny_weglarz@gmail.com
-Weight            Penney            907-797-9628   penney_weight@aol.com
-Weirather         Daren             414-959-2540   dweirather@aol.com
-Wenner            Tonette           516-968-6051   twenner@aol.com
-Wenzinger         Dick              310-510-9713   dick@yahoo.com
-Westerbeck        Stevie            949-867-4077   stevie.westerbeck@yahoo.com
-Whobrey           Yuki              313-288-7937   yuki_whobrey@aol.com
-Wide              Paris             404-505-4445   paris@hotmail.com
-Wieser            Sage              605-414-2147   sage_wieser@cox.net
-Wiklund           Melissa           419-939-3613   melissa@cox.net
-Wildfong          Cassi             847-633-3216   cassi.wildfong@aol.com
-Witten            Gertude           513-977-7043   gertude.witten@gmail.com
-Wolfgramm         Irma              973-545-7355   irma.wolfgramm@hotmail.com
-Wolny             Lavonna           703-483-1970   lavonna.wolny@hotmail.com
-Worlds            Lorrine           813-769-2939   lorrine.worlds@worlds.com
-Wrinkles          Nana              914-855-2115   nana@aol.com
-
-Please select one of the following: 
-
- c  Change output format
- i  Search for individual
- t  Print tab
- s  Look up by state
- q  Quit
-
-Option: t
-
-
-Please enter last name tab letter: u
-
-Upthegrove        Raul              619-509-5282   rupthegrove@yahoo.com
-Uyetake           Sabra             803-925-5213   sabra@uyetake.org
-
-Please select one of the following: 
-
- c  Change output format
- i  Search for individual
- t  Print tab
- s  Look up by state
- q  Quit
-
 Option: c
-
 
 Please select one of the following: 
 
@@ -578,55 +527,32 @@ Please select one of the following:
 
 Option: t
 
+Please enter last name tab letter: i
 
-Please enter last name tab letter: u
+Name:    Veronika Inouye
+Address: 6 Greenleaf Ave, San Jose, CA 95111  (Santa Clara County)
+Phone:   408-540-1785 (primary)  408-813-4592
+email:   vinouye@aol.com
+web:     http://www.cnetworkinc.com
 
-Name:    Raul Upthegrove
-Address: 4 E Colonial Dr, La Mesa, CA 91942  (San Diego County)
-Phone:   619-509-5282 (primary)  619-666-4765
-email:   rupthegrove@yahoo.com
-web:     http://www.neeleygregorywesq.com
+Name:    Bok Isaacs
+Address: 6 Gilson St, Bronx, NY 10468  (Bronx County)
+Phone:   718-809-3762 (primary)  718-478-8568
+email:   bok.isaacs@aol.com
+web:     http://www.nelsonhawaiianltd.com
 
-Name:    Sabra Uyetake
-Address: 98839 Hawthorne Blvd #6101, Columbia, SC 29201  (Richland County)
-Phone:   803-925-5213 (primary)  803-681-3678
-email:   sabra@uyetake.org
-web:     http://www.lowylimousineservice.com
+Name:    Lettie Isenhower
+Address: 70 W Main St, Beachwood, OH 44122  (Cuyahoga County)
+Phone:   216-657-7668 (primary)  216-733-8494
+email:   lettie_isenhower@yahoo.com
+web:     http://www.contechristopheraesq.com
 
+Name:    Allene Iturbide
+Address: 1 Central Ave, Stevens Point, WI 54481  (Portage County)
+Phone:   715-662-6764 (primary)  715-530-9863
+email:   allene_iturbide@cox.net
+web:     http://www.ledeckydavidesq.com
 
-Please select one of the following: 
-
- c  Change output format
- i  Search for individual
- t  Print tab
- s  Look up by state
- q  Quit
-
-Option: C
-
-
-Please select one of the following: 
-
- c  Condensed output information
- f  Full output information
-
-Option: C
-
-Please select one of the following: 
-
- c  Change output format
- i  Search for individual
- t  Print tab
- s  Look up by state
- q  Quit
-
-Option: i
-
-
-Please enter last name: wolfgramm
-Please enter first name: irma
-
-Wolfgramm         Irma              973-545-7355   irma.wolfgramm@hotmail.com
 
 Please select one of the following: 
 
@@ -638,9 +564,28 @@ Please select one of the following:
 
 Option: i
 
+Please enter last name: PAA
+Please enter first name: linn
 
-Please enter last name: doo
-Please enter first name: scooby
+Name:    Linn Paa
+Address: 1 S Pine St, Memphis, TN 38112  (Shelby County)
+Phone:   901-412-4381 (primary)  901-573-9024
+email:   linn_paa@paa.com
+web:     http://www.valeriecompany.com
+
+
+Please select one of the following: 
+
+ c  Change output format
+ i  Search for individual
+ t  Print tab
+ s  Look up by state
+ q  Quit
+
+Option: i
+
+Please enter last name: hoa
+Please enter first name: CHRIS
 
 Contact not found
 
@@ -652,67 +597,47 @@ Please select one of the following:
  s  Look up by state
  q  Quit
 
-Option: c
+Option: s
 
+Please enter two-letter state abbreviation: al
+
+No contacts found
+
+Please select one of the following: 
+
+ c  Change output format
+ i  Search for individual
+ t  Print tab
+ s  Look up by state
+ q  Quit
+
+Option: S
+
+Please enter two-letter state abbreviation: ut
+
+Name:    Lonny Weglarz
+Address: 51120 State Route 18, Salt Lake City, UT 84115  (Salt Lake County)
+Phone:   801-293-9853 (primary)  801-892-8781
+email:   lonny_weglarz@gmail.com
+web:     http://www.historydivisionofstate.com
+
+
+Please select one of the following: 
+
+ c  Change output format
+ i  Search for individual
+ t  Print tab
+ s  Look up by state
+ q  Quit
+
+Option: c
 
 Please select one of the following: 
 
  c  Condensed output information
  f  Full output information
 
-Option: f
-
-Please select one of the following: 
-
- c  Change output format
- i  Search for individual
- t  Print tab
- s  Look up by state
- q  Quit
-
-Option: s
-
-
-Please enter two-letter state abbreviation: nh
-
-Name:    Dalene Riden
-Address: 66552 Malone Rd, Plaistow, NH 03865  (Rockingham County)
-Phone:   603-315-6839 (primary)  603-745-7497
-email:   dalene.riden@aol.com
-web:     http://www.silvermanplanetarium.com
-
-
-Please select one of the following: 
-
- c  Change output format
- i  Search for individual
- t  Print tab
- s  Look up by state
- q  Quit
-
-Option: s
-
-
-Please enter two-letter state abbreviation: wy
-
-Name:    Lauran Burnard
-Address: 66697 Park Pl #3224, Riverton, WY 82501  (Fremont County)
-Phone:   307-342-7795 (primary)  307-453-7589
-email:   lburnard@burnard.com
-web:     http://www.professionalsunlimited.com
-
-Name:    Mona Delasancha
-Address: 38773 Gravois Ave, Cheyenne, WY 82001  (Laramie County)
-Phone:   307-403-1488 (primary)  307-816-7115
-email:   mdelasancha@hotmail.com
-web:     http://www.signall.com
-
-Name:    Natalie Fern
-Address: 7140 University Ave, Rock Springs, WY 82901  (Sweetwater County)
-Phone:   307-704-8713 (primary)  307-279-3793
-email:   natalie.fern@hotmail.com
-web:     http://www.kellycharlesgesq.com
-
+Option: C
 
 Please select one of the following: 
 
@@ -724,23 +649,7 @@ Please select one of the following:
 
 Option: t
 
-
-Please enter last name tab letter: x
-
-No contacts found
-
-Please select one of the following: 
-
- c  Change output format
- i  Search for individual
- t  Print tab
- s  Look up by state
- q  Quit
-
-Option: s
-
-
-Please enter two-letter state abbreviation: xx
+Please enter last name tab letter: Q
 
 No contacts found
 
@@ -752,9 +661,17 @@ Please select one of the following:
  s  Look up by state
  q  Quit
 
-Option: k
+Option: t
 
-Invalid option entered
+Please enter last name tab letter: o
+
+Ogg               Kaitlyn           410-665-4903   kaitlyn.ogg@gmail.com
+Ohms              Iluminada         480-293-2882   iluminada.ohms@yahoo.com
+Oldroyd           Dyan              913-413-4604   doldroyd@aol.com
+Oles              Jovita            386-248-4118   joles@gmail.com
+Onofrio           Antione           909-430-7765   aonofrio@onofrio.com
+Ostolaza          Jolene            757-682-7116   jolene@yahoo.com
+Ostrosky          Rozella           805-832-6163   rozella.ostrosky@ostrosky.com
 
 Please select one of the following: 
 
@@ -764,4 +681,4 @@ Please select one of the following:
  s  Look up by state
  q  Quit
 
-Option: q
+Option: Q
